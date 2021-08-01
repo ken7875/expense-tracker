@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row mb-4 justify-content-center">
+        <p class="col-2">*必填單位</p>
+        <p class="col-2">請輸入你的支出</p>
+    </div>
+    <div class="row justify-content-center">
+        <form action="/record" method="POST" class="col-4">
+            <div class="mb-3 d-flex align-items-center justify-content-center">
+                <label for="name" class="form-label">名稱 :</label>
+                <input type="text" class="form-control py-4 border-dark" id="name" name="name" placeholder="請輸入名稱" required>
+            </div>
+            <div class="mb-3 d-flex align-items-center justify-content-center">
+                <label for="date" class="form-label">日期 :</label>
+                <input type="date" class="form-control py-4 border-dark" id="date" name="date" placeholder="請輸入日期" required>
+            </div>
+            <div class="mb-3 d-flex align-items-center justify-content-center">
+                <label for="category" class="form-label">類別 :</label>
+                <select class="form-select py-4 border-dark" name="category" id="category" required>
+                {{#each categories}}
+                    <option value="{{this._id}}">{{this.name}}</option>
+                {{/each}}
+                </select>
+            </div>
+            <div class="mb-3 d-flex align-items-center justify-content-center">
+                <label for="amount" class="form-label">金額 :</label>
+                <input type="text" class="form-control py-4 border-dark" id="amount" name="amount" placeholder="金額" required>
+            </div>
+            <button type="submit" class="btn btn-warning">新增支出</button>
+        </form>
+    </div>
+</div>

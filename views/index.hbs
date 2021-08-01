@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row g-0">
+        <form action="/" method="GET" class="my-3 my-4">
+            <select class="form-select" name="category" id="category-filter" data-value="{{category}}"
+                aria-label="Default select" onchange="submit()">
+                <option value="" selected>全部</option>
+                {{#each categories}}
+                <option value="{{this._id}}" {{#is this._id ../selectCategory}} selected {{/is}}>{{this.name}}</option>
+                {{/each}}
+            </select>
+        </form>
+        <div class="col-10 offset-md-2">
+            <div class="w-100 d-flex">
+                <p>總金額:</p>
+                <h1 class="text-warning">{{totalAmount}}</h1>
+            </div>
+        </div>
+        <ul class="list-group offset-md-2 col-10 g-0">
+            {{#each result}}
+            <li class="list-group-item col-10 border-0 row g-0 d-flex">
+                <div class="col-8 bg-light px-4 py-2">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <a href="/?category={{this.category._id}}" class="text-dark">
+                                <i class="fas {{this.category.icon}} mx-4"></i>
+                            </a>
+                            <div>
+                                <p class="mb-0 name">{{this.name}}</p>
+                                <p class="mb-0">{{this.date}}</p>
+                            </div>
+                        </div>
+                        <p class="price">{{this.amount}}</p>
+                    </div>
+                </div>
+                <div class="col-3 offset-1 d-flex align-items-center justify-content-around">
+                    <form action="/record/{{this._id}}/edit" method="GET">
+                        <button type="submit" class="border-0 bg-white text-dark">修改</button>
+                    </form>
+                    <form action="/record/{{this._id}}?_method=DELETE" method="POST">
+                        <button type="submit" class="border-0 bg-white text-dark">刪除</button>
+                    </form>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+        <div class="row justify-content-center">
+            <a href="/record/new" class="btn btn-warning text-light col-4">新增支出</a>
+        </div>
+    </div>
+</div>
